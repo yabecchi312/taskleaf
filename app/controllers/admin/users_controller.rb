@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def new
@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update
+    if @user.update(user_params)
       redirect_to admin_users_path, notice: "ユーザー「#{@user.name}」を登録しました。"
     else
       render :new
