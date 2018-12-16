@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_action :login_required
+  # ログインをしていなくても利用できるようにしている
+
   def new
   end
 
@@ -11,6 +14,11 @@ class SessionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    reset_session
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 
   private
