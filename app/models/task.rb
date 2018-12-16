@@ -4,6 +4,9 @@ class Task < ApplicationRecord
 
   belongs_to :user
 
+  scope :recent, -> {order(created_at: :desc)}
+  #繰り返し利用される絞り込み条件を読みやすくする。recentというメソッドを用意した
+
   private
 
   def validate_name_not_including_comma
